@@ -41,8 +41,7 @@ public class Deck
 
     private Card CreateNewCard(Vector3 position, string animName)
     {
-        GameObject newCard = GameObject.Instantiate(GameController.instance.cardPrefab,
-                                                    GameController.instance.canvas.gameObject.transform);
+        GameObject newCard = GameObject.Instantiate(GameController.instance.cardPrefab, GameController.instance.canvas.gameObject.transform);
         newCard.transform.position = position;
         Card card = newCard.GetComponent<Card>();
         if (card)
@@ -71,23 +70,13 @@ public class Deck
 
     internal void DealCard(Hand hand)
     {
-        for (int h = 0; h<3; h++)
+        for(int h=0; h < 3; h++)
         {
-            if (hand.cards[h]==null)
+            if(hand.cards[h] == null)
             {
-                if (hand.isPlayers)
-                {
-                    GameController.instance.player.PlayDealSound();
-                }
-                else
-                {
-                    GameController.instance.enemy.PlayDealSound();
-                }
                 hand.cards[h] = CreateNewCard(hand.positions[h].position, hand.animNames[h]);
                 return;
             }
         }
     }
-
-
 }

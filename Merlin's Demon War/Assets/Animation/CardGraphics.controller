@@ -209,7 +209,7 @@ AnimatorStateTransition:
   m_CanTransitionToSelf: 1
 --- !u!1102 &1102077513877243276
 AnimatorState:
-  serializedVersion: 5
+  serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -235,7 +235,7 @@ AnimatorState:
   m_TimeParameter: 
 --- !u!1102 &1102179401955516510
 AnimatorState:
-  serializedVersion: 5
+  serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -262,7 +262,7 @@ AnimatorState:
   m_TimeParameter: 
 --- !u!1102 &1102196327094066472
 AnimatorState:
-  serializedVersion: 5
+  serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -289,7 +289,7 @@ AnimatorState:
   m_TimeParameter: 
 --- !u!1102 &1102378629630134502
 AnimatorState:
-  serializedVersion: 5
+  serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -316,7 +316,7 @@ AnimatorState:
   m_TimeParameter: 
 --- !u!1102 &1102398170124761852
 AnimatorState:
-  serializedVersion: 5
+  serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -343,7 +343,7 @@ AnimatorState:
   m_TimeParameter: 
 --- !u!1102 &1102442052382879390
 AnimatorState:
-  serializedVersion: 5
+  serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -370,7 +370,7 @@ AnimatorState:
   m_TimeParameter: 
 --- !u!1102 &1102453507898133050
 AnimatorState:
-  serializedVersion: 5
+  serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -396,7 +396,7 @@ AnimatorState:
   m_TimeParameter: 
 --- !u!1102 &1102526640006187498
 AnimatorState:
-  serializedVersion: 5
+  serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -423,7 +423,7 @@ AnimatorState:
   m_TimeParameter: 
 --- !u!1102 &1102926794772367582
 AnimatorState:
-  serializedVersion: 5
+  serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -449,7 +449,7 @@ AnimatorState:
   m_TimeParameter: 
 --- !u!1102 &1102971773322990584
 AnimatorState:
-  serializedVersion: 5
+  serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -476,7 +476,7 @@ AnimatorState:
   m_TimeParameter: 
 --- !u!1102 &1102978501652424180
 AnimatorState:
-  serializedVersion: 5
+  serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -502,7 +502,7 @@ AnimatorState:
   m_TimeParameter: 
 --- !u!1102 &1102990963005898736
 AnimatorState:
-  serializedVersion: 5
+  serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -529,7 +529,7 @@ AnimatorState:
   m_TimeParameter: 
 --- !u!1107 &1107334209003204690
 AnimatorStateMachine:
-  serializedVersion: 5
+  serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}

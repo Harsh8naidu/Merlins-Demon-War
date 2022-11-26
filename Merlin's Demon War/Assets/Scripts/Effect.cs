@@ -6,11 +6,8 @@ using UnityEngine.UI;
 public class Effect : MonoBehaviour
 {
     public Player targetPlayer = null;
-    public Card   sourceCard   = null;
-    public Image  effectImage  = null;
-
-    public AudioSource iceAudio         = null;
-    public AudioSource fireballAudio    = null;
+    public Card sourceCard = null;
+    public Image effectImage = null;
 
     public void EndTrigger()
     {
@@ -19,7 +16,6 @@ public class Effect : MonoBehaviour
         {
             bounce = true;
             targetPlayer.SetMirror(false);
-            targetPlayer.PlaySmashSound();
 
             if (targetPlayer.isPlayer)
             {
@@ -33,7 +29,7 @@ public class Effect : MonoBehaviour
         else
         {
             int damage = sourceCard.cardData.damage;
-            if (!targetPlayer.isPlayer) // monster / enemy
+            if (!targetPlayer.isPlayer) // monster/enemy
             {
                 if (sourceCard.cardData.damageType == CardData.DamageType.Fire && targetPlayer.isFire)
                     damage = damage / 2;
@@ -45,34 +41,13 @@ public class Effect : MonoBehaviour
 
             GameController.instance.UpdateHealths();
 
-            if (targetPlayer.health<=0)
-            {
-                targetPlayer.health =0;
-                if (targetPlayer.isPlayer)
-                {
-                    GameController.instance.PlayPlayerDieSound();
-                }
-                else
-                {
-                    GameController.instance.PlayEnemyDieSound();
-                }
-            }
+            //TODO check for death
 
-            if (!bounce)
+            if(!bounce)
                 GameController.instance.NextPlayersTurn();
 
             GameController.instance.isPlayable = true;
         }
         Destroy(gameObject);
-    }
-
-    internal void PlayIceSound()
-    {
-        iceAudio.Play();
-    }
-
-    internal void PlayFireballSound()
-    {
-        fireballAudio.Play();
     }
 }

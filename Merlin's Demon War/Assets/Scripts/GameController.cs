@@ -9,13 +9,13 @@ public class GameController : MonoBehaviour
     static public GameController instance = null;
 
     public Deck playerDeck = new Deck();
-    public Deck enemyDeck  = new Deck();
+    public Deck enemyDeck = new Deck();
 
     public Hand playersHand = new Hand();
-    public Hand enemysHand  = new Hand();
+    public Hand enemysHand = new Hand();
 
     public Player player = null;
-    public Player enemy  = null;
+    public Player enemy = null;
 
     public List<CardData> cards = new List<CardData>();
 
@@ -23,22 +23,22 @@ public class GameController : MonoBehaviour
     public Sprite[] damageNumbers = new Sprite[10];
 
     public GameObject cardPrefab = null;
-    public Canvas     canvas     = null;
+    public Canvas canvas = null;
 
     public bool isPlayable = false;
 
-    public GameObject effectFromLeftPrefab  = null;
+    public GameObject effectFromLeftPrefab = null;
     public GameObject effectFromRightPrefab = null;
 
-    public Sprite fireBallImage       = null;
-    public Sprite iceBallImage        = null;
-    public Sprite multiFireBallImage  = null;
-    public Sprite multiIceBallImage   = null;
+    public Sprite fireBallImage = null;
+    public Sprite iceBallImage = null;
+    public Sprite multiFireBallImage = null;
+    public Sprite multiIceBallImage = null;
     public Sprite fireAndIceBallImage = null;
 
     public bool playersTurn = true;
 
-    public Text turnText  = null;
+    public Text turnText = null;
     public Text scoreText = null;
 
     public int playerScore = 0;
@@ -47,10 +47,7 @@ public class GameController : MonoBehaviour
     public Image enemySkipTurn = null;
 
     public Sprite fireDemon = null;
-    public Sprite iceDemon = null;
-
-    public AudioSource playerDieAudio  = null;
-    public AudioSource enemyDieAudio   = null;
+    public Sprite IceDemon = null;
 
     private void Awake()
     {
@@ -78,7 +75,7 @@ public class GameController : MonoBehaviour
     internal IEnumerator DealHands()
     {
         yield return new WaitForSeconds(1);
-        for (int t=0;t<3;t++)
+        for (int t = 0; t < 3; t++)
         {
             playerDeck.DealCard(playersHand);
             enemyDeck.DealCard(enemysHand);
@@ -92,12 +89,12 @@ public class GameController : MonoBehaviour
         // RemoveCard
         // DealReplacementCard
 
-        if (!CardValid(card,usingOnPlayer,fromHand))
+        if (!CardValid(card, usingOnPlayer, fromHand))
             return false;
 
         isPlayable = false;
 
-        CastCard(card,usingOnPlayer,fromHand);
+        CastCard(card, usingOnPlayer, fromHand);
 
         player.glowImage.gameObject.SetActive(false);
         enemy.glowImage.gameObject.SetActive(false);
@@ -111,12 +108,12 @@ public class GameController : MonoBehaviour
     {
         bool valid = false;
 
-        if (cardBeingPlayed==null)
+        if (cardBeingPlayed == null)
             return false;
 
         if (fromHand.isPlayers)
         {
-            if (cardBeingPlayed.cardData.cost<=player.mana)
+            if (cardBeingPlayed.cardData.cost <= player.mana)
             {
                 if (usingOnPlayer.isPlayer && cardBeingPlayed.cardData.isDefenseCard)
                     valid = true;
@@ -126,7 +123,7 @@ public class GameController : MonoBehaviour
         }
         else // from enemys
         {
-            if (cardBeingPlayed.cardData.cost<=enemy.mana)
+            if (cardBeingPlayed.cardData.cost <= enemy.mana)
             {
                 if (!usingOnPlayer.isPlayer && cardBeingPlayed.cardData.isDefenseCard)
                     valid = true;
@@ -142,7 +139,6 @@ public class GameController : MonoBehaviour
         if (card.cardData.isMirrorCard)
         {
             usingOnPlayer.SetMirror(true);
-            usingOnPlayer.PlayMirrorSound();
             NextPlayersTurn();
             isPlayable = true;
         }
@@ -151,10 +147,11 @@ public class GameController : MonoBehaviour
             if (card.cardData.isDefenseCard) // health cards
             {
                 usingOnPlayer.health += card.cardData.damage;
-                usingOnPlayer.PlayHealSound();
 
-                if (usingOnPlayer.health>usingOnPlayer.maxHealth)
+                if(usingOnPlayer.health >= usingOnPlayer.maxHealth)
+                {
                     usingOnPlayer.health = usingOnPlayer.maxHealth;
+                }
 
                 UpdateHealths();
 
@@ -162,15 +159,15 @@ public class GameController : MonoBehaviour
             }
             else // Attack card
             {
-                CastAttackEffect(card,usingOnPlayer);
+                CastAttackEffect(card, usingOnPlayer);
             }
-            
+
             if (fromHand.isPlayers)
                 playerScore += card.cardData.damage;
-            
-             UpdateScore();
+
+            UpdateScore();
         }
-        
+
         if (fromHand.isPlayers)
         {
             GameController.instance.player.mana -= card.cardData.cost;
@@ -179,7 +176,7 @@ public class GameController : MonoBehaviour
         else
         {
             GameController.instance.enemy.mana -= card.cardData.cost;
-            GameController.instance.enemy.UpdateManaBalls();
+            GameController.instance.player.UpdateManaBalls();
         }
     }
 
@@ -202,29 +199,25 @@ public class GameController : MonoBehaviour
         if (effect)
         {
             effect.targetPlayer = usingOnPlayer;
-            effect.sourceCard   = card;
+            effect.sourceCard = card;
 
-            switch(card.cardData.damageType)
+            switch (card.cardData.damageType)
             {
                 case CardData.DamageType.Fire:
                     if (card.cardData.isMulti)
                         effect.effectImage.sprite = multiFireBallImage;
                     else
                         effect.effectImage.sprite = fireBallImage;
-                    effect.PlayFireballSound();
-                break;
+                    break;
                 case CardData.DamageType.Ice:
                     if (card.cardData.isMulti)
                         effect.effectImage.sprite = multiIceBallImage;
                     else
                         effect.effectImage.sprite = iceBallImage;
-                    effect.PlayIceSound();
-                break;
+                    break;
                 case CardData.DamageType.Both:
                     effect.effectImage.sprite = fireAndIceBallImage;
-                    effect.PlayFireballSound();
-                    effect.PlayIceSound();
-                break;
+                    break;
             }
         }
     }
@@ -234,14 +227,14 @@ public class GameController : MonoBehaviour
         player.UpdateHealth();
         enemy.UpdateHealth();
 
-        if (player.health<=0)
+        if(player.health <= 0)
         {
             StartCoroutine(GameOver());
         }
-        if (enemy.health<=0)
+        if(enemy.health <= 0)
         {
             playerKills++;
-            playerScore+=100;
+            playerScore += 100;
             UpdateScore();
             StartCoroutine(NewEnemy());
         }
@@ -250,6 +243,7 @@ public class GameController : MonoBehaviour
     private IEnumerator NewEnemy()
     {
         enemy.gameObject.SetActive(false);
+        // clear enemy hand
         enemysHand.ClearHand();
         yield return new WaitForSeconds(0.75f);
         SetUpEnemy();
@@ -263,17 +257,17 @@ public class GameController : MonoBehaviour
         enemy.health = 5;
         enemy.UpdateHealth();
         enemy.isFire = true;
-        if (UnityEngine.Random.Range(0,2)==1)
+        if (UnityEngine.Random.Range(0, 2) == 1)
             enemy.isFire = false;
         if (enemy.isFire)
             enemy.playerImage.sprite = fireDemon;
         else
-            enemy.playerImage.sprite = iceDemon;
+            enemy.playerImage.sprite = IceDemon;
     }
 
     private IEnumerator GameOver()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1f);
         UnityEngine.SceneManagement.SceneManager.LoadScene(2);
     }
 
@@ -283,24 +277,26 @@ public class GameController : MonoBehaviour
         bool enemyIsDead = false;
         if (playersTurn)
         {
-            if (player.mana<5)
+            if (player.mana < 5)
                 player.mana++;
         }
         else // enemy
         {
-            if (enemy.health>0)
+            if (enemy.health > 0)
             {
-                if (enemy.mana<5)
+                if (enemy.mana < 5)
                     enemy.mana++;
             }
             else
+            {
                 enemyIsDead = true;
+            }
         }
 
         if (enemyIsDead)
         {
             playersTurn = !playersTurn;
-            if (player.mana<5)
+            if (player.mana < 5)
                 player.mana++;
         }
         else
@@ -335,7 +331,7 @@ public class GameController : MonoBehaviour
     private Card AIChooseCard()
     {
         List<Card> available = new List<Card>();
-        for(int i=0;i<3;i++)
+        for(int i=0; i<3; i++)
         {
             if (CardValid(enemysHand.cards[i], enemy, enemysHand))
                 available.Add(enemysHand.cards[i]);
@@ -343,12 +339,12 @@ public class GameController : MonoBehaviour
                 available.Add(enemysHand.cards[i]);
         }
 
-        if (available.Count ==0) // none available
+        if(available.Count == 0) // none available
         {
             NextPlayersTurn();
             return null;
         }
-        int choice = UnityEngine.Random.Range(0,available.Count);
+        int choice = UnityEngine.Random.Range(0, available.Count);
         return available[choice];
     }
 
@@ -356,20 +352,20 @@ public class GameController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
 
-        if (card)
+        if(card != null)
         {
             TurnCard(card);
 
             yield return new WaitForSeconds(2);
 
-            if (card.cardData.isDefenseCard)
-                UseCard(card,enemy,enemysHand);
-            else // attack card
-                UseCard(card,player,enemysHand);
+            if (card.cardData.isDefenseCard) // attack card
+                UseCard(card, enemy, enemysHand);
+            else // defence card
+                UseCard(card, player, enemysHand);
 
             yield return new WaitForSeconds(1);
 
-            enemyDeck.DealCard(enemysHand);            
+            enemyDeck.DealCard(enemysHand);
 
             yield return new WaitForSeconds(1);
         }
@@ -389,21 +385,14 @@ public class GameController : MonoBehaviour
             animator.SetTrigger("Flip");
         }
         else
+        {
             Debug.LogError("No Animator found.");
+        }
     }
 
     private void UpdateScore()
     {
-        scoreText.text = "Demons killed: "+playerKills.ToString()+".  Score: "+playerScore.ToString();
-    }
-
-    internal void PlayPlayerDieSound()
-    {
-        playerDieAudio.Play();
-    }
-
-    internal void PlayEnemyDieSound()
-    {
-        enemyDieAudio.Play();
+        scoreText.text = "Demons killed: " + playerKills.ToString() + ". Score: " + playerScore.ToString();
     }
 }
+    

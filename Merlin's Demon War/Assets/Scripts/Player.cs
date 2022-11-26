@@ -59,13 +59,13 @@ public class Player : MonoBehaviour, IDropHandler
 
     internal void UpdateHealth()
     {
-        if (health>=0 && health< GameController.instance.healthNumbers.Length)
+        if(health >= 0 && health < GameController.instance.healthNumbers.Length)
         {
             healthNumberImage.sprite = GameController.instance.healthNumbers[health];
         }
         else
         {
-            Debug.LogWarning("Health is not a valid number,"+health.ToString());
+            Debug.LogWarning("Health is not a valid number, " + health.ToString());
         }
     }
 
@@ -81,32 +81,16 @@ public class Player : MonoBehaviour, IDropHandler
 
     internal void UpdateManaBalls()
     {
-        for(int m=0;m<5;m++)
+        for(int m=0; m < 5; m++)
         {
-            if (mana>m)
+            if(mana > m)
+            {
                 manaBalls[m].SetActive(true);
+            }
             else
+            {
                 manaBalls[m].SetActive(false);
+            }
         }
-    }
-
-    internal void PlayMirrorSound()
-    {
-        mirrorAudio.Play();
-    }
-
-    internal void PlaySmashSound()
-    {
-        smashAudio.Play();
-    }
-
-    internal void PlayHealSound()
-    {
-        healAudio.Play();
-    }
-
-    internal void PlayDealSound()
-    {
-        dealAudio.Play();
     }
 }
