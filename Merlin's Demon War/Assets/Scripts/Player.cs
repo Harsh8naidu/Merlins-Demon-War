@@ -93,4 +93,24 @@ public class Player : MonoBehaviour, IDropHandler
             }
         }
     }
+
+    internal void PlayMirrorSound()
+    {
+        mirrorAudio.Play();
+    }
+
+    internal void PlaySmashSound()
+    {
+        smashAudio.Play();
+    }
+
+    internal void PlayHealSound()
+    {
+        healAudio.Play();
+    }
+
+    internal void PlayDealSound()
+    {
+        dealAudio.Play();
+    }
 }

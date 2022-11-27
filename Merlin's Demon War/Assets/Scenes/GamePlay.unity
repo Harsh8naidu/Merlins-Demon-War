@@ -2704,6 +2704,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49b7d3299d30f2d43a1dd11b3490a7fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  burnAudio: {fileID: 1172979852}
 --- !u!82 &1172979852
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4395,6 +4396,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a0355dc067b37c943a1991b2678d83e2, type: 2}
   - {fileID: 11400000, guid: 9534d41a215ceab48965894e07bbbbaf, type: 2}
   - {fileID: 11400000, guid: 054b6c9b9f159604980a258d96ae3e17, type: 2}
+  - {fileID: 11400000, guid: f6f1acec7b74d064db5924c095f21202, type: 2}
   healthNumbers:
   - {fileID: 21300020, guid: 1c7241c32abdc9947ae51fc755789e56, type: 3}
   - {fileID: 21300022, guid: 1c7241c32abdc9947ae51fc755789e56, type: 3}
@@ -4431,6 +4433,7 @@ MonoBehaviour:
   multiIceBallImage: {fileID: 21300000, guid: 854be1c9130885d4fbf235ff1b64a47d, type: 3}
   fireAndIceBallImage: {fileID: 21300000, guid: b5a0bbc1f8449db49a03cdfa4e7796b2,
     type: 3}
+  destructBallImage: {fileID: 21300000, guid: 7ec26e2c08b32164595a72ff9141d8ef, type: 3}
   playersTurn: 1
   turnText: {fileID: 152050665}
   scoreText: {fileID: 2076257728}
@@ -4439,6 +4442,8 @@ MonoBehaviour:
   enemySkipTurn: {fileID: 925794863}
   fireDemon: {fileID: 21300000, guid: 2e380631a4559f546b343018ae1ec7c5, type: 3}
   IceDemon: {fileID: 21300000, guid: dbee7b03b218d5a48bf7dd2c2c007037, type: 3}
+  playerDieAudio: {fileID: 1814187718}
+  enemyDieAudio: {fileID: 1814187719}
 --- !u!4 &1814187717
 Transform:
   m_ObjectHideFlags: 0
